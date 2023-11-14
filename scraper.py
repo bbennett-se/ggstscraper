@@ -1,5 +1,9 @@
 from bs4 import BeautifulSoup
 import pip._vendor.requests as requests
+import colorama
+from colorama import init
+init(convert=True)
+from colorama import Fore
 
 data = []
 url = 'https://www.dustloop.com/w/GGST/Sol_Badguy/Frame_Data'
@@ -14,6 +18,69 @@ rows = tbod1.find_all('tr')
 for row in rows:
     cols = row.find_all('td')
     cols = [ele.text.strip() for ele in cols]
-    data.append ([ele for ele in cols if ele])
+    count = 0
+    for col in cols: 
+        match count:
+            case 1:
+                print("Input: ", end = "")
+                fore = ""
+                if col.__contains__("P"):
+                    fore = Fore.LIGHTRED_EX
+                elif col.__contains__("K"):
+                    fore = Fore.CYAN
+                elif col.__contains__("S"):
+                    fore = Fore.GREEN
+                elif col.__contains__("HS"):
+                    fore = Fore.RED
+                else:
+                    fore = Fore.YELLOW
+                    
+                print(fore + col, end = " | ")
+            case 2:
+                print("Damage: ", end = "")
+                print(col, end = " | ")
+            case 3:
+                print("Guard: ", end = "")
+                print(col, end = " | ")
+            case 4:
+                print("Startup: ", end = "")
+                print(col, end = " | ")
+            case 5:
+                print("Active: ", end = "")
+                print(col, end = " | ")
+            case 6:
+                print("Recovery: ", end = "")
+                print(col, end = " | ")
+            case 7:
+                print("On-Block: ", end = "")
+                print(col, end = " | ")
+            case 8:
+                print("On-Hit: ", end = "")
+                print(col, end = " | ")
+            case 9:
+                print("Level: ", end = "")
+                print(col, end = " | ")
+            case 10:
+                print("Counter Type: ", end = "")
+                print(col, end = " | ")
+            case 11:
+                print("Invuln: ", end = "")
+                if(col == ""): 
+                    print("N/A", end = " | ")
+                else:
+                    print(col, end = " | ")
+            case 12:
+                print("Proration: ", end = "")
+                print(col, end = " | ")
+            case 12:
+                print("R.I.S.C. Gain: ", end = "")
+                print(col, end = " | ")
+            case 12:
+                print("R.I.S.C Loss: ", end = "")
+                print(col, end = " | ")
+        count +=1
+    print('')
+    print('')
+    #data.append([ele for ele in cols if ele])
 
-print(data)
+#print(data)
