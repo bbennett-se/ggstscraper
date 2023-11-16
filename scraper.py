@@ -3,7 +3,7 @@ import pip._vendor.requests as requests
 import colorama
 from colorama import init
 init(convert=True)
-from colorama import Fore
+from colorama import Fore, Style
 
 menu = {}
 menu['1'] = "Sol Badguy"
@@ -37,61 +37,61 @@ url = ''
 
 while True:
     options=menu.keys()
-    options.sort()
     for entry in options:
         print(entry, menu[entry])
+    
         
-    selection = raw_input("Select Your Character:")
+    selection = input("Select Your Character:")
     if selection == '1':
         url = 'https://www.dustloop.com/w/GGST/Sol_Badguy/Frame_Data'
     elif selection == '2':
         url = 'https://www.dustloop.com/w/GGST/Ky_Kiske/Frame_Data'
     elif selection == '3':
-        url = 'https://www.dustloop.com/w/GGST/Ky_Kiske/Frame_Data'
-    elif selection == '4':
         url = 'https://www.dustloop.com/w/GGST/May/Frame_Data'
-    elif selection == '5':
+    elif selection == '4':
         url = 'https://www.dustloop.com/w/GGST/Axl_Low/Frame_Data'
-    elif selection == '6':
+    elif selection == '5':
         url = 'https://www.dustloop.com/w/GGST/Chipp_Zanuff/Frame_Data'
-    elif selection == '7':
+    elif selection == '6':
         url = 'https://www.dustloop.com/w/GGST/Potemkin/Frame_Data'
-    elif selection == '8':
+    elif selection == '7':
         url = 'https://www.dustloop.com/w/GGST/Faust/Frame_Data'
-    elif selection == '9':
+    elif selection == '8':
         url = 'https://www.dustloop.com/w/GGST/Millia_Rage/Frame_Data'
-    elif selection == '10':
+    elif selection == '9':
         url = 'https://www.dustloop.com/w/GGST/Zato-1/Frame_Data'
-    elif selection == '11':
+    elif selection == '10':
         url = 'https://www.dustloop.com/w/GGST/Ramlethal_Valentine/Frame_Data'
-    elif selection == '12':
+    elif selection == '11':
         url = 'https://www.dustloop.com/w/GGST/Leo_Whitefang/Frame_Data'
-    elif selection == '13':
+    elif selection == '12':
         url = 'https://www.dustloop.com/w/GGST/Nagoriyuki/Frame_Data'
-    elif selection == '14':
+    elif selection == '13':
         url = 'https://www.dustloop.com/w/GGST/Giovanna/Frame_Data'
-    elif selection == '15':
+    elif selection == '14':
         url = 'https://www.dustloop.com/w/GGST/Anji_Mito/Frame_Data'
-    elif selection == '16':
+    elif selection == '15':
         url = 'https://www.dustloop.com/w/GGST/I-No/Frame_Data'
-    elif selection == '17':
+    elif selection == '16':
         url = 'https://www.dustloop.com/w/GGST/Goldlewis_Dickinson/Frame_Data'
-    elif selection == '18':
+    elif selection == '17':
         url = 'https://www.dustloop.com/w/GGST/Jack-O/Frame_Data'
-    elif selection == '19':
+    elif selection == '18':
         url = 'https://www.dustloop.com/w/GGST/Happy_Chaos/Frame_Data'
-    elif selection == '20':
+    elif selection == '19':
         url = 'https://www.dustloop.com/w/GGST/Baiken/Frame_Data'
-    elif selection == '21':
+    elif selection == '20':
         url = 'https://www.dustloop.com/w/GGST/Testament/Frame_Data'
-    elif selection == '22':
+    elif selection == '21':
         url = 'https://www.dustloop.com/w/GGST/Bridget/Frame_Data'
-    elif selection == '23':
+    elif selection == '22':
         url = 'https://www.dustloop.com/w/GGST/Sin_Kiske/Frame_Data'
-    elif selection == '24':
+    elif selection == '23':
         url = 'https://www.dustloop.com/w/GGST/Bedman/Frame_Data'
-    elif selection == '25':
+    elif selection == '24':
         url = 'https://www.dustloop.com/w/GGST/Asuka_R/Frame_Data'
+    elif selection == '25':
+        url = 'https://www.dustloop.com/w/GGST/Johnny/Frame_Data'
 
 
 
@@ -102,6 +102,12 @@ while True:
     table1 = soup.find('table', attrs={'data-tooltips': ",,How this attack can be guarded. All non-throws can be air blocked.,Number of frames for this move to reach its first active frame (includes the first active frame).,Number of active frames in this attack. Values in ( ) are for inactive frames between hits of an attack.,Number of frames this move is in a recovery state before returning to neutral.,After blocking this attack&#44; how soon the attacker can act compared to the defender.<br>A positive value means the attacker can move first. Assumes the attack connects on the first active frame and is not canceled into anything else.,After getting hit by this attack&#44; how soon the attacker can act compared to the defender.<br>A positive value means the attacker can move first. Assumes the attack connects on the first active frame and is not canceled into anything else.,Attack Level generally determines the amount of hitstun&#44; blockstun&#44; and hitstop this attack will inflict; and the amount of Tension gained on hit or block.,The type of Counter Hit this attack triggers. There are four types: Very Small&#44; Small&#44; Mid&#44; and Large.,Attribute and hitbox invincibility for this move."})
     tbod1 = table1.find('tbody')
 
+    table2 = soup.find('table', attrs={'class':"cargoDynamicTable display dataTable", 'cellspacing':"0", 'width':"100%", 'data-details-fields':"1", 'data-order': "[]", 'data-tooltips':",,,How this attack can be guarded. All non-throws can be air blocked.,Number of frames for this move to reach its first active frame (includes the first active frame).,Number of active frames in this attack. Values in ( ) are for inactive frames between hits of an attack.,Number of frames this move is in a recovery state before returning to neutral.,After blocking this attack&amp;#44; how soon the attacker can act compared to the defender.<br>A positive value means the attacker can move first. Assumes the attack connects on the first active frame and is not canceled into anything else.,After getting hit by this attack&amp;#44; how soon the attacker can act compared to the defender.<br>A positive value means the attacker can move first. Assumes the attack connects on the first active frame and is not canceled into anything else.,Attack Level generally determines the amount of hitstun&amp;#44; blockstun&amp;#44; and hitstop this attack will inflict; and the amount of Tension gained on hit or block.,The type of Counter Hit this attack triggers. There are four types: Very Small&amp;#44; Small&amp;#44; Mid&amp;#44; and Large.,Attribute and hitbox invincibility for this move.", 'style' : "table-layout: fixed; overflow-wrap: break-word; width: 100%;", 'id': "DataTables_Table_1", 'id': "grid", 'aria-describedby': "DataTables_Table_1_info"})
+    tbod2 = table1.find('tbody')
+
+    table3 = soup.find('table', attrs={'id': "DataTables_Table_3", 'data-tooltips': ",,,How this attack can be guarded. All non-throws can be air blocked.,Number of frames for this move to reach its first active frame (includes the first active frame).,Number of active frames in this attack. Values in ( ) are for inactive frames between hits of an attack.,Number of frames this move is in a recovery state before returning to neutral.,After blocking this attack&#44; how soon the attacker can act compared to the defender.<br>A positive value means the attacker can move first. Assumes the attack connects on the first active frame and is not canceled into anything else.,After getting hit by this attack&#44; how soon the attacker can act compared to the defender.<br>A positive value means the attacker can move first. Assumes the attack connects on the first active frame and is not canceled into anything else.,Attack Level generally determines the amount of hitstun&#44; blockstun&#44; and hitstop this attack will inflict; and the amount of Tension gained on hit or block.,The type of Counter Hit this attack triggers. There are four types: Very Small&#44; Small&#44; Mid&#44; and Large.,Attribute and hitbox invincibility for this move."})
+    tbod3 = table1.find('tbody')
+
     rows = tbod1.find_all('tr')
     for row in rows:
         cols = row.find_all('td')
@@ -110,20 +116,11 @@ while True:
         for col in cols: 
             match count:
                 case 1:
+                    print("=================================================================================")
                     print("Input: ", end = "")
-                    fore = ""
-                    if col.__contains__("P"):
-                        fore = Fore.LIGHTRED_EX
-                    elif col.__contains__("K"):
-                        fore = Fore.CYAN
-                    elif col.__contains__("S"):
-                        fore = Fore.GREEN
-                    elif col.__contains__("HS"):
-                        fore = Fore.RED
-                    else:
-                        fore = Fore.YELLOW
-                        
-                    print(fore + col, end = " | ")
+
+                    print(col)
+                    print('')
                 case 2:
                     print("Damage: ", end = "")
                     print(col, end = " | ")
@@ -138,19 +135,22 @@ while True:
                     print(col, end = " | ")
                 case 6:
                     print("Recovery: ", end = "")
-                    print(col, end = " | ")
+                    print(col)
+                    print('')
                 case 7:
                     print("On-Block: ", end = "")
                     print(col, end = " | ")
                 case 8:
                     print("On-Hit: ", end = "")
                     print(col, end = " | ")
+                    
                 case 9:
                     print("Level: ", end = "")
                     print(col, end = " | ")
                 case 10:
                     print("Counter Type: ", end = "")
-                    print(col, end = " | ")
+                    print(col)
+                    print('')
                 case 11:
                     print("Invuln: ", end = "")
                     if(col == ""): 
@@ -160,12 +160,140 @@ while True:
                 case 12:
                     print("Proration: ", end = "")
                     print(col, end = " | ")
-                case 12:
+                case 13:
                     print("R.I.S.C. Gain: ", end = "")
                     print(col, end = " | ")
-                case 12:
+                case 14:
                     print("R.I.S.C Loss: ", end = "")
                     print(col, end = " | ")
             count +=1
+        print('')
+        print('')
+
+        rows2 = tbod2.find_all('tr')
+    for row2 in rows2:
+        cols2 = row2.find_all('td')
+        cols2 = [ele2.text.strip() for ele2 in cols2]
+        count2 = 0
+        for col2 in cols2: 
+            match count2:
+                case 1:
+                    print("=================================================================================")
+                    print("Input: ", end = "")
+
+                    print(col2, end = " | ")
+                case 2:
+                    print("Name: ", end = "")
+                    print(col2)
+                    print('')
+                case 3:
+                    print("Damage: ", end = "")
+                    print(col2, ' | ')
+                case 4:
+                    print("Guard: ", end = "")
+                    print(col2, end = " | ")
+                case 5:
+                    print("Startup: ", end = "")
+                    print(col2, end = " | ")
+                case 6:
+                    print("Active: ", end = "")
+                    print(col2, end = " | ")
+                case 7:
+                    print("Recovery: ", end = "")
+                    print(col2)
+                    print('')
+                case 8:
+                    print("On-Block: ", end = "")
+                    print(col2, end = " | ")
+                case 9:
+                    print("On-Hit: ", end = "")
+                    print(col2, end = " | ")
+                    print('')
+                case 10:
+                    print("Level: ", end = "")
+                    print(col2, end = " | ")
+                case 11:
+                    print("Counter Type: ", end = "")
+                    print(col2)
+                case 12:
+                    print("Invuln: ", end = "")
+                    if(col2 == ""): 
+                        print("N/A", end = " | ")
+                    else:
+                        print(col2, end = " | ")
+                case 13:
+                    print("Proration: ", end = "")
+                    print(col2, end = " | ")
+                case 14:
+                    print("R.I.S.C. Gain: ", end = "")
+                    print(col2, end = " | ")
+                case 15:
+                    print("R.I.S.C Loss: ", end = "")
+                    print(col2, end = " | ")
+            count2 +=1
+        print('')
+        print('')
+
+        rows3 = tbod3.find_all('tr')
+    for row3 in rows3:
+        cols3 = row3.find_all('td')
+        cols3 = [ele3.text.strip() for ele3 in cols3]
+        count3 = 0
+        for col3 in cols3: 
+            match count:
+                case 1:
+                    print("=================================================================================")
+                    print("Input: ", end = "")
+
+                    print(col3, end = " | ")
+                case 2:
+                    print("Name: ", end = "")
+                    print(col3)
+                    print('')
+                case 3:
+                    print("Damage: ", end = "")
+                    print(col3, ' | ')
+                case 4:
+                    print("Guard: ", end = "")
+                    print(col3, end = " | ")
+                case 5:
+                    print("Startup: ", end = "")
+                    print(col3, end = " | ")
+                case 6:
+                    print("Active: ", end = "")
+                    print(col3, end = " | ")
+                case 7:
+                    print("Recovery: ", end = "")
+                    print(col3)
+                    print('')
+                case 8:
+                    print("On-Block: ", end = "")
+                    print(col3, end = " | ")
+                case 9:
+                    print("On-Hit: ", end = "")
+                    print(col3, end = " | ")
+                    print('')
+                case 10:
+                    print("Level: ", end = "")
+                    print(col3, end = " | ")
+                case 11:
+                    print("Counter Type: ", end = "")
+                    print(col3)
+                case 12:
+                    print("Invuln: ", end = "")
+                    if(col3 == ""): 
+                        print("N/A", end = " | ")
+                    else:
+                        print(col3, end = " | ")
+                case 13:
+                    print("Proration: ", end = "")
+                    print(col3, end = " | ")
+                case 14:
+                    print("R.I.S.C. Gain: ", end = "")
+                    print(col3, end = " | ")
+                case 15:
+                    print("R.I.S.C Loss: ", end = "")
+                    print(col3, end = " | ")
+            count3 +=1
         print('')
         print('')
