@@ -1,3 +1,4 @@
+import time
 from bs4 import BeautifulSoup
 import pip._vendor.requests as requests
 import colorama
@@ -36,6 +37,7 @@ menu['25'] = "Johnny"
 data = []
 url = ''
 while True:
+    #prints character menu
     print(" 1. Sol Badguy           11. Leo WhiteFang        21. Bridget")
     print(" 2. Ky Kiske             12. Nagoriyuki           22. Sin Kiske")
     print(" 3. May                  13. Giovanna             23. Bedman?")
@@ -46,13 +48,10 @@ while True:
     print(" 8. Millia Rage          18. Happy Chaos")
     print(" 9. Zato-1               19. Baiken")
     print("10. Ramlethal Valentine  20. Testament")
-#while True:
-#    options=menu.keys()
-#    for entry in options:
-#        print(entry, menu[entry], end = "   ")
     
         
-    selection = input("Select Your Character:")
+    selection = input("Select Your Character: ")
+    #takes character input and sets url for scraping
     if selection == '0':
        exit()
     elif selection == '1':
@@ -107,22 +106,27 @@ while True:
         url = 'https://www.dustloop.com/w/GGST/Johnny/Frame_Data'
 
 
-
+    #scrapes frame data page and parses the html
     response = requests.get(url)
-
     soup = BeautifulSoup(response.text, 'html.parser')
 
+    #tables on the website are formatted weird
+    #takes two result sets with frame data and then combines them into one result set
     tables = soup.find_all('table', {'data-tooltips': ",,How this attack can be guarded. All non-throws can be air blocked.,Number of frames for this move to reach its first active frame (includes the first active frame).,Number of active frames in this attack. Values in ( ) are for inactive frames between hits of an attack.,Number of frames this move is in a recovery state before returning to neutral.,After blocking this attack&#44; how soon the attacker can act compared to the defender.<br>A positive value means the attacker can move first. Assumes the attack connects on the first active frame and is not canceled into anything else.,After getting hit by this attack&#44; how soon the attacker can act compared to the defender.<br>A positive value means the attacker can move first. Assumes the attack connects on the first active frame and is not canceled into anything else.,Attack Level generally determines the amount of hitstun&#44; blockstun&#44; and hitstop this attack will inflict; and the amount of Tension gained on hit or block.,The type of Counter Hit this attack triggers. There are four types: Very Small&#44; Small&#44; Mid&#44; and Large.,Attribute and hitbox invincibility for this move."})
     specials = soup.find_all('table', {'data-tooltips': ",,,How this attack can be guarded. All non-throws can be air blocked.,Number of frames for this move to reach its first active frame (includes the first active frame).,Number of active frames in this attack. Values in ( ) are for inactive frames between hits of an attack.,Number of frames this move is in a recovery state before returning to neutral.,After blocking this attack&#44; how soon the attacker can act compared to the defender.<br>A positive value means the attacker can move first. Assumes the attack connects on the first active frame and is not canceled into anything else.,After getting hit by this attack&#44; how soon the attacker can act compared to the defender.<br>A positive value means the attacker can move first. Assumes the attack connects on the first active frame and is not canceled into anything else.,Attack Level generally determines the amount of hitstun&#44; blockstun&#44; and hitstop this attack will inflict; and the amount of Tension gained on hit or block.,The type of Counter Hit this attack triggers. There are four types: Very Small&#44; Small&#44; Mid&#44; and Large.,Attribute and hitbox invincibility for this move."})
     specials.reverse()
     for special in specials:
         tables.insert(1, special)
 
+    #tracks current table to manage data formatting
     tcount = 0
 
+    #iterates through result set and prints frame data
     for table in tables:
         rows = table.find_all('tr')
         tcount +=1
+        
+        #prints normals
         if tcount == 1:
             
             rows = table.find_all('tr')
@@ -185,6 +189,8 @@ while True:
                     count +=1
                 print('')
                 print('')
+
+        #prints special moves
         elif tcount == 2:
             for row in rows:
                 cols = row.find_all('td')
@@ -251,6 +257,7 @@ while True:
                 print('')
                 print('')
 
+        #prints overdrives
         elif tcount == 3:
             for row in rows:
                 cols = row.find_all('td')
@@ -315,6 +322,8 @@ while True:
                     count +=1
                 print('')
                 print('')
+
+        #prints throws/universal mechanics(Wild Assault, etc.)
         elif tcount == 4:
             for row in rows:
                 cols = row.find_all('td')
@@ -376,3 +385,4 @@ while True:
                     count +=1
                 print('')
                 print('')
+    time.sleep(1)
