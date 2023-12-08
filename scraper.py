@@ -33,6 +33,7 @@ menu['22'] = "Sin Kiske"
 menu['23'] = "Bedman?"
 menu['24'] = "Asuka R#"
 menu['25'] = "Johnny"
+menu['26'] = "Elphelt Valentine"
 
 data = []
 url = ''
@@ -43,8 +44,8 @@ while True:
     print(" 3. May                  13. Giovanna             23. Bedman?")
     print(" 4. Axl Low              14. Anji Mito            24. Asuka R#")
     print(" 5. Chipp Zanuff         15. I-No                 25. Johnny")
-    print(" 6. Potemkin             16. Goldlewis Dickinson   0. Quit")
-    print(" 7. Faust                17. Jack-o Valentine")
+    print(" 6. Potemkin             16. Goldlewis Dickinson  26. Elphelt Valentine")
+    print(" 7. Faust                17. Jack-o Valentine      0. Quit")
     print(" 8. Millia Rage          18. Happy Chaos")
     print(" 9. Zato-1               19. Baiken")
     print("10. Ramlethal Valentine  20. Testament")
@@ -104,6 +105,8 @@ while True:
         url = 'https://www.dustloop.com/w/GGST/Asuka_R/Frame_Data'
     elif selection == '25':
         url = 'https://www.dustloop.com/w/GGST/Johnny/Frame_Data'
+    elif selection == '26':
+        url = 'https://www.dustloop.com/w/GGST/Elphelt_Valentine/Frame_Data'
 
 
     #scrapes frame data page and parses the html
